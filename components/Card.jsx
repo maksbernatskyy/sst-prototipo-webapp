@@ -16,9 +16,9 @@ export default function Card({
             <h5 className="card-title">{start_date}</h5>
             <h5 className="card-title">{end_date}</h5>
             <p className="card-text">{description}</p>
-            <a href='#' className="btn btn-primary">
+            <Link to='/detail/:id' className="btn btn-primary">
               Partecipanti
-            </a>
+            </Link>
           </div>
         </div>
       </div>
