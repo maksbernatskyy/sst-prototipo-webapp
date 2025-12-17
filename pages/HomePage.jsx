@@ -16,6 +16,7 @@ export default function HomePage() {
                start_date={thisTravel.start_date}
                end_date={thisTravel.end_date}
                description={thisTravel.description}
+               path={`/detail/${thisTravel.id}`}
               />
           ))}
         </div>

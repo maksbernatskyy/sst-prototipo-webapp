@@ -5,6 +5,7 @@ export default function Card({
   start_date,
   end_date,
   description,
+  path
 }) {
   return (
     <>
@@ -16,7 +17,7 @@ export default function Card({
             <h5 className="card-title">{start_date}</h5>
             <h5 className="card-title">{end_date}</h5>
             <p className="card-text">{description}</p>
-            <Link to='/detail/:id' className="btn btn-primary">
+            <Link to={path} className="btn btn-primary">
               Partecipanti
             </Link>
           </div>
