@@ -1,6 +1,7 @@
 const users = [
 	{
 		id: 1,
+        travel_id: 1,
 		first_name: "Marco",
 		last_name: "Rossi",
 		email: "marco.rossi@example.com",
@@ -9,6 +10,7 @@ const users = [
 	},
 	{
 		id: 2,
+        travel_id: 3,
 		first_name: "Giulia",
 		last_name: "Bianchi",
 		email: "giulia.bianchi@example.com",
@@ -17,6 +19,7 @@ const users = [
 	},
 	{
 		id: 3,
+        travel_id: 3,
 		first_name: "Luca",
 		last_name: "Verdi",
 		email: "luca.verdi@example.com",
@@ -25,6 +28,7 @@ const users = [
 	},
 	{
 		id: 4,
+        travel_id: 4,
 		first_name: "Sara",
 		last_name: "Neri",
 		email: "sara.neri@example.com",
@@ -33,6 +37,7 @@ const users = [
 	},
 	{
 		id: 5,
+        travel_id: 4,
 		first_name: "Alessandro",
 		last_name: "Gialli",
 		email: "alessandro.gialli@example.com",
