@@ -1,22 +1,34 @@
-import users from "../data/users";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
 import travels from "../data/travels";
+import users from "../data/users";
 
 export default function DetailTravel() {
-  const { id } = useParams(); // ottengo id dall'URL
+  const { id } = useParams();
 
   const travelId = parseInt(id);
   const travelUsers = users.filter((user) => user.travel_id === travelId);
 
+  const [displayedUsers, setDisplayedUsers] = useState(travelUsers);
+
   return (
     <>
-      <div className="container mt-3">
-        <h1 className="d-flex justify-content-center">
+      <div className="container mt-5">
+        <h1 className="text-center mb-4 fw-bold text-uppercase">
           {travels[travelId - 1].destination} trip
         </h1>
 
+        <div className="d-flex justify-content-center mb-5">
+          <div className="w-100" style={{ maxWidth: "600px" }}>
+            <SearchBar
+              users={travelUsers}
+              onSearchResults={setDisplayedUsers}
+            />
+          </div>
+        </div>
         <div className="accordion" id="accordionExample">
-          {travelUsers.map((user, i) => (
+          {displayedUsers.map((user, i) => (
             <div key={user.id} className="accordion-item">
               <h2 className="accordion-header">
                 <button
@@ -33,10 +45,25 @@ export default function DetailTravel() {
               <div
                 id={`collapse-${i}`}
                 className="accordion-collapse collapse"
-                data-bs-parent='#accordionExample'
+                data-bs-parent="#accordionExample"
               >
                 <div className="accordion-body">
-                  {user.email} {user.id_code} {user.phone}
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                      <strong>Email:</strong>
+                      <span className="text-secondary">{user.email}</span>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                      <strong>Codice ID:</strong>
+                      <span className="badge bg-light text-dark border">
+                        {user.id_code}
+                      </span>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                      <strong>Telefono:</strong>
+                      <span className="text-secondary">{user.phone}</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
