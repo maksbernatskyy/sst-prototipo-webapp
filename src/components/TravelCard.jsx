@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Card({
+export default function TravelCard({
   destination,
   start_date,
   end_date,

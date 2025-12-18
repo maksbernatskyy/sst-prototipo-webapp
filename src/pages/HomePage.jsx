@@ -1,4 +1,4 @@
-import Card from "../components/TravelCard";
+import TravelCard from "../components/TravelCard";
 import TravelForm from "../components/TravelForm";
 import { useTravels } from "../contexts/TravelsContext";
 
