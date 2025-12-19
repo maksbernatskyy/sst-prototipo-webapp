@@ -1,40 +1,41 @@
 import { useState } from "react";
+import { useUsers } from "../contexts/Users.Context";
 
 const SearchBar = ({ users, onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
+  const { usersList } = useUsers();
+
   const handleSearch = (e) => {
     e.preventDefault();
 
-    const value = searchTerm.toLowerCase();
+    const value = searchTerm.toLowerCase().trim();
     setSearchTerm(value);
+    onSearchResults(users);
 
-    if (value.trim() === "") {
+    if (value === "") {
       // se la barra di ricerca è vuota, mostro tutti i partecipanti
-      onSearchResults(users);
+      // onSearchResults(users);
       return;
     }
 
     // filtro gli utenti
-    const term = value.toLowerCase();
     const results = users.filter((user) => {
       const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
-      return fullName.includes(term);
+      return fullName.includes(value);
     });
 
     onSearchResults(results);
-
-    const clearSearch = () => {
-      onSearchResults(users);
-    };
     setSearchTerm("");
+  };
 
-    console.log(users);
+  const refreshUsers = () => {
+    onSearchResults(users);
   };
 
   return (
-    <form onSubmit={handleSearch} className="w-100">
-      <div className="input-group ">
+    <form onSubmit={handleSearch} className="w-100 mt-1">
+      <div className="input-group shadow-sm">
         <input
           type="text"
           className="form-control form-control-lg"
@@ -43,6 +44,13 @@ const SearchBar = ({ users, onSearchResults }) => {
           placeholder="Cerca partecipante per nome e cognome..."
           aria-label="Cerca partecipante"
         />
+        <button
+          className="btn btn-outline-primary px-4"
+          type="button"
+          onClick={refreshUsers}
+        >
+          <i className="bi bi-search"></i> Annulla
+        </button>
         <button className="btn btn-primary px-4" type="submit">
           <i className="bi bi-search"></i> Cerca
         </button>
